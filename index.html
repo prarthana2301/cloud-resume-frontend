@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sriprarthana — Cloud & DevOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicon/2.17.0/devicon.min.css">
+<style>
+  :root{
+    --bg: #0a0e14;
+    --bg-raised: #10151f;
+    --border: #1f2937;
+    --border-soft: #171e2a;
+    --text: #e6edf3;
+    --text-muted: #8b96a5;
+    --text-dim: #5b6472;
+    --ok: #3fb950;
+    --ok-dim: #1a3324;
+    --warn: #e3b341;
+    --warn-dim: #3a2f14;
+    --info: #58a6ff;
+    --info-dim: #16233a;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+    --radius: 6px;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before{
+    content:"";
+    position: fixed;
+    inset:0;
+    background-image:
+      linear-gradient(var(--border-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  a{ color: var(--info); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+
+  :focus-visible{
+    outline: 2px solid var(--info);
+    outline-offset: 2px;
+  }
+
+  .wrap{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---------- NAV ---------- */
+  .topbar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(10,14,20,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-inner{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+  .brand{ color: var(--text); font-weight:600; letter-spacing: 0.02em; }
+  .brand span{ color: var(--ok); }
+  .topnav{ display:flex; gap: 20px; }
+  .topnav a{ color: var(--text-muted); }
+  .topnav a:hover{ color: var(--text); text-decoration:none; }
+  @media (max-width: 560px){ .topnav{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding: 72px 0 40px; }
+  .status-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ok);
+    background: var(--ok-dim);
+    border: 1px solid rgba(63,185,80,0.35);
+    padding: 6px 12px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+  }
+  .dot{
+    width:7px; height:7px; border-radius:50%;
+    background: var(--ok);
+    box-shadow: 0 0 0 0 rgba(63,185,80,0.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(63,185,80,0.55); }
+    70%{ box-shadow: 0 0 0 8px rgba(63,185,80,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(63,185,80,0); }
+  }
+  @media (prefers-reduced-motion: reduce){ .dot{ animation:none; } }
+
+  .terminal-line{
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .terminal-line .prompt{ color: var(--ok); }
+  .terminal-line .cmd{ color: var(--text-muted); }
+
+  h1{
+    font-family: var(--sans);
+    font-size: clamp(34px, 6vw, 52px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .role-line{
+    font-family: var(--mono);
+    font-size: clamp(15px, 2.4vw, 18px);
+    color: var(--info);
+    margin-bottom: 20px;
+  }
+  .hero-desc{
+    max-width: 560px;
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-bottom: 28px;
+  }
+  .hero-actions{ display:flex; gap:12px; flex-wrap: wrap; }
+  .btn{
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 10px 18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    color: var(--text);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .btn:hover{ text-decoration:none; border-color: var(--text-dim); }
+  .btn.primary{
+    background: var(--ok);
+    color: #06210f;
+    border-color: var(--ok);
+    font-weight: 600;
+  }
+  .btn.primary:hover{ filter: brightness(1.08); }
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{ padding: 56px 0; border-top: 1px solid var(--border-soft); }
+  .section-label{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
+  .section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background: var(--border-soft);
+  }
+  .section-title{
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+
+  /* ---------- PIPELINE (signature element) ---------- */
+  .pipeline{
+    display:flex;
+    overflow-x: auto;
+    gap: 0;
+    padding-bottom: 8px;
+    scrollbar-width: thin;
+  }
+  .stage{
+    flex: 1 0 150px;
+    position: relative;
+    padding: 20px 16px 16px;
+    border: 1px solid var(--border);
+    background: var(--bg-raised);
+    margin-right: -1px;
+  }
+  .stage:first-child{ border-top-left-radius: var(--radius); border-bottom-left-radius: var(--radius); }
+  .stage:last-child{ border-top-right-radius: var(--radius); border-bottom-right-radius: var(--radius); margin-right:0; }
+  .stage-icon{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .stage-name{
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .stage-desc{
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .stage.done .stage-icon{ color: var(--ok); }
+  .stage.active .stage-icon{ color: var(--warn); }
+  .stage.active{ border-color: rgba(227,179,65,0.4); }
+  .runner{
+    position: absolute;
+    top: -1px; left: -6px;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--warn);
+    box-shadow: 0 0 10px rgba(227,179,65,0.7);
+    animation: run 5s linear infinite;
+  }
+  @keyframes run{
+    0%{ left: -6px; }
+    100%{ left: calc(100% - 6px); }
+  }
+  @media (prefers-reduced-motion: reduce){ .runner{ animation:none; left: calc(100% - 6px); } }
+
+  /* ---------- STACK / SKILLS ---------- */
+  .stack-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+    gap: 16px;
+  }
+  .stack-card{
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+  }
+  .stack-card-head{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    margin-bottom: 12px;
+  }
+  .stack-card h3{
+    font-size: 14px;
+    font-family: var(--mono);
+    color: var(--text);
+  }
+  .tag-ok{
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ok);
+    background: var(--ok-dim);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+  .chip-row{ display:flex; flex-wrap: wrap; gap: 8px; }
+  .chip{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--bg);
+    border: 1px solid var(--border-soft);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  /* ---------- PROJECT (deployed service card) ---------- */
+  .service-card{
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .service-card:last-child{ margin-bottom: 0; }
+  .service-head{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 22px;
+    border-bottom: 1px solid var(--border-soft);
+    flex-wrap: wrap;
+  }
+  .service-head h3{ font-size: 19px; margin-bottom: 4px; }
+  .service-sub{ font-family: var(--mono); font-size: 12px; color: var(--text-dim); }
+  .badge-live{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ok);
+    background: var(--ok-dim);
+    border: 1px solid rgba(63,185,80,0.35);
+    padding: 5px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    display:flex; align-items:center; gap:6px;
+  }
+  .badge-live .dot{ width:6px; height:6px; }
+  .service-body{ padding: 20px 22px 24px; }
+  .service-body p{ color: var(--text-muted); font-size: 14.5px; margin-bottom: 16px; }
+  .service-meta{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .meta-item .meta-label{ font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .meta-item .meta-value{ font-size: 13.5px; color: var(--text); }
+  .service-links{ display:flex; gap: 14px; font-family: var(--mono); font-size: 12.5px; margin-top: 4px; }
+
+  /* ---------- EXPERIENCE (commit log) ---------- */
+  .commit-log{ border-left: 2px solid var(--border); margin-left: 6px; }
+  .commit{
+    position: relative;
+    padding: 4px 0 24px 26px;
+  }
+  .commit::before{
+    content:"";
+    position:absolute;
+    left: -7px; top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--info);
+  }
+  .commit-hash{ font-family: var(--mono); font-size: 12px; color: var(--info); margin-bottom: 4px; }
+  .commit-title{ font-weight: 600; font-size: 15.5px; margin-bottom: 4px; }
+  .commit-meta{ font-family: var(--mono); font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .commit-body{ color: var(--text-muted); font-size: 14px; }
+  .commit-body ul{ margin: 8px 0 0 18px; }
+  .commit-body li{ margin-bottom: 4px; }
+
+  /* ---------- EDUCATION ---------- */
+  .edu-card{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .edu-card:last-child{ margin-bottom: 0; }
+  .edu-card h3{ font-size: 16px; margin-bottom: 4px; }
+  .edu-card .commit-meta{ margin-bottom: 0; }
+  .edu-dates{
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--info);
+    white-space: nowrap;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-term{
+    font-family: var(--mono);
+    font-size: 14px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+  }
+  .contact-term .line{ margin-bottom: 10px; color: var(--text-muted); }
+  .contact-term .line:last-child{ margin-bottom: 0; }
+  .contact-term .prompt{ color: var(--ok); }
+  .contact-term .key{ color: var(--info); }
+
+  /* ---------- LOGO MARQUEE ---------- */
+  .marquee-section{
+    padding: 0;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+    background: var(--bg-raised);
+  }
+  .marquee-viewport{
+    overflow: hidden;
+    position: relative;
+    padding: 28px 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee-track{
+    display:flex;
+    width: max-content;
+    gap: 56px;
+    animation: scroll-left 28s linear infinite;
+  }
+  @keyframes scroll-left{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{ animation: none; }
+    .marquee-viewport{ overflow-x: auto; }
+  }
+  .logo-item{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    gap:8px;
+    flex: 0 0 auto;
+    color: var(--text-muted);
+  }
+  .logo-item i{ font-size: 36px; line-height:1; }
+  .logo-item span{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+  .logo-item:hover{ color: var(--text); }
+  .marquee-track:hover{ animation-play-state: paused; }
+
+  footer{
+    padding: 32px 0 48px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">Sriprarthana K</div>
+    <nav class="topnav">
+      <a href="#stack">stack</a>
+      <a href="#projects">projects</a>
+      <a href="#experience">experience</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="status-pill"><span class="dot"></span>STATUS: OPEN TO WORK</div>
+    <h1>Sriprarthana K</h1>
+    <div class="role-line">// Cloud &amp; DevOps Engineer — Bangalore, India</div>
+    <p class="hero-desc">
+      Cloud &amp; DevOps engineer in the making — MCA candidate at Sona College of
+      Technology with a Python and AI/ML foundation, now hands-on with CI/CD
+      pipelines, containerization, and AWS infrastructure.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn primary">View deployed projects →</a>
+      <a href="#contact" class="btn">Get in touch</a>
+    </div>
+  </section>
+
+  <section id="pipeline" aria-label="Career pipeline">
+    <div class="section-label">career_pipeline</div>
+    <div class="pipeline">
+      <div class="stage done">
+        <div class="runner"></div>
+        <div class="stage-icon">01 · SOURCE</div>
+        <div class="stage-name">AI/ML Foundation</div>
+        <div class="stage-desc">B.Sc in Computer Science, now pursuing MCA at Sona College of Technology. Strong foundation in Python and machine learning.</div>
+      </div>
+      <div class="stage done">
+        <div class="stage-icon">02 · BUILD</div>
+        <div class="stage-name">Applied Projects</div>
+        <div class="stage-desc">Built FactoryGuard AI during internship, then two independent DevOps projects — a full CI/CD pipeline and a production troubleshooting lab.</div>
+      </div>
+      <div class="stage done">
+        <div class="stage-icon">03 · TEST</div>
+        <div class="stage-name">Cloud &amp; Infra Skills</div>
+        <div class="stage-desc">Hands-on with AWS EC2, Docker, Jenkins, and Ansible — provisioning, containerizing, and automating deployments end-to-end.</div>
+      </div>
+      <div class="stage active">
+        <div class="stage-icon">04 · DEPLOY</div>
+        <div class="stage-name">Job Search</div>
+        <div class="stage-desc">Actively targeting Cloud/DevOps roles across Bangalore.</div>
+      </div>
+      <div class="stage">
+        <div class="stage-icon">05 · MONITOR</div>
+        <div class="stage-name">Next Role</div>
+        <div class="stage-desc">Growing into production infrastructure, CI/CD, and reliability work.</div>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <div class="marquee-section">
+    <div class="marquee-viewport">
+      <div class="marquee-track" id="marqueeTrack">
+        <div class="logo-item"><i class="devicon-linux-plain"></i><span>Linux</span></div>
+        <div class="logo-item"><i class="devicon-docker-plain colored"></i><span>Docker</span></div>
+        <div class="logo-item"><i class="devicon-ansible-plain colored"></i><span>Ansible</span></div>
+        <div class="logo-item"><i class="devicon-kubernetes-plain colored"></i><span>Kubernetes</span></div>
+        <div class="logo-item"><i class="devicon-amazonwebservices-plain-wordmark colored"></i><span>AWS</span></div>
+        <div class="logo-item"><i class="devicon-terraform-plain colored"></i><span>Terraform</span></div>
+        <div class="logo-item"><i class="devicon-git-plain colored"></i><span>Git</span></div>
+        <div class="logo-item"><i class="devicon-python-plain colored"></i><span>Python</span></div>
+        <div class="logo-item"><i class="devicon-jenkins-line colored"></i><span>Jenkins</span></div>
+        <div class="logo-item"><i class="devicon-nginx-original colored"></i><span>Nginx</span></div>
+        <div class="logo-item"><i class="devicon-bash-plain"></i><span>Bash</span></div>
+        <div class="logo-item"><i class="devicon-github-original"></i><span>GitHub</span></div>
+        <!-- duplicate set for seamless loop -->
+        <div class="logo-item"><i class="devicon-linux-plain"></i><span>Linux</span></div>
+        <div class="logo-item"><i class="devicon-docker-plain colored"></i><span>Docker</span></div>
+        <div class="logo-item"><i class="devicon-ansible-plain colored"></i><span>Ansible</span></div>
+        <div class="logo-item"><i class="devicon-kubernetes-plain colored"></i><span>Kubernetes</span></div>
+        <div class="logo-item"><i class="devicon-amazonwebservices-plain-wordmark colored"></i><span>AWS</span></div>
+        <div class="logo-item"><i class="devicon-terraform-plain colored"></i><span>Terraform</span></div>
+        <div class="logo-item"><i class="devicon-git-plain colored"></i><span>Git</span></div>
+        <div class="logo-item"><i class="devicon-python-plain colored"></i><span>Python</span></div>
+        <div class="logo-item"><i class="devicon-jenkins-line colored"></i><span>Jenkins</span></div>
+        <div class="logo-item"><i class="devicon-nginx-original colored"></i><span>Nginx</span></div>
+        <div class="logo-item"><i class="devicon-bash-plain"></i><span>Bash</span></div>
+        <div class="logo-item"><i class="devicon-github-original"></i><span>GitHub</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+  <section id="stack">
+    <div class="section-label">infrastructure_stack</div>
+    <h2 class="section-title">What I work with</h2>
+    <div class="stack-grid">
+      <div class="stack-card">
+        <div class="stack-card-head"><h3>cloud platforms</h3></div>
+        <div class="chip-row">
+          <span class="chip">AWS EC2</span>
+          <span class="chip">Security Groups</span>
+          <span class="chip">S3</span>
+          <span class="chip">VPC</span>
+          <span class="chip">IAM</span>
+          <span class="chip">RDS</span>
+          <span class="chip">CloudWatch</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-card-head"><h3>ci/cd &amp; tools</h3></div>
+        <div class="chip-row">
+          <span class="chip">Git</span>
+          <span class="chip">GitHub</span>
+          <span class="chip">Jenkins</span>
+          <span class="chip">GitHub Actions</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-card-head"><h3>containers &amp; iac</h3></div>
+        <div class="chip-row">
+          <span class="chip">Docker</span>
+          <span class="chip">Docker Hub</span>
+          <span class="chip">Ansible</span>
+          <span class="chip">Kubernetes</span>
+          <span class="chip">Terraform</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-card-head"><h3>monitoring &amp; logging</h3></div>
+        <div class="chip-row">
+          <span class="chip">Prometheus</span>
+          <span class="chip">Grafana</span>
+          <span class="chip">ELK Stack</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-card-head"><h3>scripting &amp; os</h3></div>
+        <div class="chip-row">
+          <span class="chip">Python</span>
+          <span class="chip">Bash</span>
+          <span class="chip">Linux (Ubuntu)</span>
+          <span class="chip">Amazon Linux</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-card-head"><h3>networking</h3></div>
+        <div class="chip-row">
+          <span class="chip">TCP/IP</span>
+          <span class="chip">DNS</span>
+          <span class="chip">Load Balancing</span>
+          <span class="chip">Security Groups</span>
+          <span class="chip">Reverse Proxying</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-label">deployed_services</div>
+    <h2 class="section-title">Featured projects</h2>
+
+    <div class="service-card">
+      <div class="service-head">
+        <div>
+          <h3>DevOps Dashboard</h3>
+          <div class="service-sub">flask-ci-cd-pipeline · v1.0</div>
+        </div>
+        <div class="badge-live"><span class="dot"></span>DEPLOYED</div>
+      </div>
+      <div class="service-body">
+        <p>
+          A Flask app instrumented with a complete CI/CD pipeline: GitHub triggers
+          Jenkins to build and test, Docker packages the image and pushes it to
+          Docker Hub, and Ansible deploys it onto an AWS EC2 instance — fully
+          automated from commit to running container.
+        </p>
+        <div class="service-meta">
+          <div class="meta-item">
+            <div class="meta-label">App</div>
+            <div class="meta-value">Flask + pytest</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">CI</div>
+            <div class="meta-value">Jenkins (build, test, gate)</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Packaging</div>
+            <div class="meta-value">Docker, Docker Hub</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Deploy</div>
+            <div class="meta-value">Ansible → AWS EC2 (Ubuntu)</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Pipeline</div>
+            <div class="meta-value">GitHub → Jenkins → Docker → Docker Hub → Ansible → EC2</div>
+          </div>
+        </div>
+        <div class="chip-row">
+          <span class="chip">Flask</span>
+          <span class="chip">Jenkins</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Ansible</span>
+          <span class="chip">AWS EC2</span>
+        </div>
+        <div class="service-links">
+          <a href="https://github.com/prarthana2301/devops-dashboard">github.com/prarthana2301/devops-dashboard →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-head">
+        <div>
+          <h3>Production Incident Simulator</h3>
+          <div class="service-sub">aws-ec2-troubleshooting-lab · v1.0</div>
+        </div>
+        <div class="badge-live"><span class="dot"></span>DEPLOYED</div>
+      </div>
+      <div class="service-body">
+        <p>
+          A hands-on troubleshooting lab on AWS EC2 (Ubuntu, Nginx, Flask) built
+          around five intentionally broken production scenarios — each diagnosed,
+          resolved, and written up as a full root-cause-analysis report with
+          before/during/after evidence.
+        </p>
+        <div class="service-meta">
+          <div class="meta-item">
+            <div class="meta-label">Environment</div>
+            <div class="meta-value">AWS EC2, Ubuntu, Nginx, Flask</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Incidents</div>
+            <div class="meta-value">App Down, Disk Full, High CPU, SSH Failure, Networking</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Format</div>
+            <div class="meta-value">RCA reports per incident</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Evidence</div>
+            <div class="meta-value">20 before/broken/after screenshots</div>
+          </div>
+        </div>
+        <div class="chip-row">
+          <span class="chip">AWS EC2</span>
+          <span class="chip">Linux</span>
+          <span class="chip">Nginx</span>
+          <span class="chip">systemd</span>
+          <span class="chip">Root Cause Analysis</span>
+        </div>
+        <div class="service-links">
+          <a href="https://github.com/prarthana2301/production-incident-simulator">github.com/prarthana2301/production-incident-simulator →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-head">
+        <div>
+          <h3>FactoryGuard AI</h3>
+          <div class="service-sub">smart-factory-monitoring · v1.0</div>
+        </div>
+        <div class="badge-live"><span class="dot"></span>DEPLOYED</div>
+      </div>
+      <div class="service-body">
+        <p>
+          A smart factory monitoring platform built during the Zaalima Development
+          internship, combining predictive modeling with live visual inspection to
+          keep an eye on factory conditions and alert when something needs attention.
+        </p>
+        <div class="service-meta">
+          <div class="meta-item">
+            <div class="meta-label">Prediction</div>
+            <div class="meta-value">XGBoost, Random Forest</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Vision</div>
+            <div class="meta-value">MobileNetV2</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Interface</div>
+            <div class="meta-value">Streamlit dashboard</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Alerts</div>
+            <div class="meta-value">Gmail SMTP</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Storage</div>
+            <div class="meta-value">SQLite</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Docs</div>
+            <div class="meta-value">Full report, UML diagrams, test cases</div>
+          </div>
+        </div>
+        <div class="chip-row">
+          <span class="chip">Python</span>
+          <span class="chip">Streamlit</span>
+          <span class="chip">XGBoost</span>
+          <span class="chip">MobileNetV2</span>
+          <span class="chip">SQLite</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-label">git log --experience</div>
+    <h2 class="section-title">Experience</h2>
+    <div class="commit-log">
+      <div class="commit">
+        <div class="commit-title">Internship — Zaalima Development</div>
+        <div class="commit-meta">AI/ML Intern</div>
+        <div class="commit-body">
+          Designed and built FactoryGuard AI end-to-end.
+          <ul>
+            <li>Combined predictive models with computer vision for factory monitoring</li>
+            <li>Shipped a working Streamlit interface backed by SQLite and email alerts</li>
+            <li>Produced full documentation: academic report, presentation, architecture diagrams, test cases</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-label">education</div>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-card">
+      <div>
+        <h3>Sona College of Technology</h3>
+        <div class="commit-meta">Master of Computer Applications (MCA)</div>
+      </div>
+      <div class="edu-dates">2024 – 2026</div>
+    </div>
+    <div class="edu-card">
+      <div>
+        <h3>Vivekanandha College of Arts and Science for Women</h3>
+        <div class="commit-meta">Bachelor of Science, Computer Science</div>
+      </div>
+      <div class="edu-dates">2020 – 2024</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-label">contact</div>
+    <h2 class="section-title">Get in touch</h2>
+    <div class="contact-term">
+      <div class="line"><span class="key">email:</span> sriprarthana.2301@gmail.com</div>
+      <div class="line"><span class="key">linkedin:</span> www.linkedin.com/in/
+sriprarthana-kalyanakumar-a63a7a286
+</div>
+      <div class="line"><span class="key">github:</span> https://github.com/prarthana2301</div>
+      <div class="line"><span class="key">location:</span> Bangalore, India</div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  built with care · Bangalore, IN
+</footer>
+
+</body>
+</html>
