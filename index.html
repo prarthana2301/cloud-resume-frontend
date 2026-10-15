@@ -822,6 +822,18 @@ sriprarthana-kalyanakumar-a63a7a286
 
 <footer>
   built with care · Bangalore, IN
+  <p>Visitors: <span id="visitor-count">...</span></p>
+
+<script>
+  fetch("https://z5ni7t7dufd6dujvbhmm7gaif40slswl.lambda-url.us-west-2.on.aws/")
+    .then((res) => res.json())
+    .then((data) => {
+      document.getElementById("visitor-count").textContent = data.count;
+    })
+    .catch(() => {
+      document.getElementById("visitor-count").textContent = "–";
+    });
+</script>
 </footer>
 
 </body>
